@@ -1,6 +1,6 @@
-# cli-wizard
+# prompt-wizard
 
-CLI tool for multi-step user input
+A user-friendly library for creating multi-step CLI interfaces to collect user input.
 
 ## Examples:
 
