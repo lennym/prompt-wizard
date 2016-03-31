@@ -1,0 +1,74 @@
+require('colors');
+
+const Promise = require('bluebird');
+
+const read = Promise.promisify(require('read'));
+
+const templatable = [
+    'prompt',
+    'default'
+];
+
+function Wizard(steps) {
+    this.steps = steps;
+}
+
+Wizard.prototype.execute = function () {
+    const inputs = {};
+    return this.steps.reduce((promise, step) => {
+        return promise
+            .then(() => executeStep(step, inputs))
+            .then(input => inputs[step.key] = input);
+    }, Promise.resolve()).then(() => inputs);
+};
+
+function executeStep(step, inputs) {
+
+    templatable.forEach((key) => {
+        if (typeof step[key] === 'function') {
+            step[key] = step[key](inputs);
+        }
+    });
+
+    return read(step)
+        .then(input => {
+            var result;
+            if (typeof step.validate === 'function') {
+                result = step.validate(input, inputs);
+            }
+            if (step.required && !input) {
+                result = 'value cannot be empty';
+            }
+            if (result) { throw new ValidationError(result); }
+            return input;
+        })
+        .then(input => {
+            if (step.confirm) {
+                return read({
+                    prompt: typeof step.confirm === 'string' ? step.confirm : 'Confirm:',
+                    silent: step.silent
+                })
+                .then(confirmation => {
+                    if (confirmation !== input) { throw new ValidationError('inputs do not match'); }
+                    return input;
+                });
+            }
+            return input;
+        })
+        .catch(e => {
+            if (e instanceof ValidationError) {
+                console.log('INVALID INPUT:'.red, e.message);
+                return executeStep(step, inputs);
+            }
+            throw e;
+        });
+
+}
+
+function ValidationError(message) {
+    Error.call(this, message);
+    this.message = message;
+}
+require('util').inherits(ValidationError, Error);
+
+module.exports = Wizard;
