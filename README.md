@@ -9,7 +9,7 @@ A user-friendly library for creating multi-step CLI interfaces to collect user i
 In its simplest form, a wizard will ask a series of questions before resolving a promise with the consolidated answers:
 
 ```javascript
-var wizard = new Wizard([
+const wizard = Wizard.create([
     { prompt: 'What is your name?' },
     { prompt: 'What is your favourite colour?' }
 ]);
@@ -22,7 +22,7 @@ wizard.execute().then(console.log);
 The keys that values are stored on in the final resolve object can be configured by setting a `key` property on the steps.
 
 ```javascript
-var wizard = new Wizard([
+const wizard = Wizard.create([
     {
         prompt: 'What is your name?',
         key: 'name'
@@ -44,7 +44,7 @@ wizard.execute().then(console.log);
 Fields can be marked as required to force the user to provide an answer. Unanswered fields will result in a warning message being shown and the prompt repeated:
 
 ```javascript
-var wizard = new Wizard([
+const wizard = Wizard.create([
     {
         prompt: 'What is your name?',
         required: true
@@ -63,7 +63,7 @@ wizard.execute().then(console.log);
 Custom validation methods can be added to fields. These should return a falsy value for valid inputs, or a message to be displayed for invalid inputs.
 
 ```javascript
-var wizard = new Wizard([
+const wizard = Wizard.create([
     {
         prompt: 'Username:',
         required: true,
@@ -79,7 +79,7 @@ wizard.execute().then(console.log);
 Password input can be hidden from view by passing a `silent: true` options for the field.
 
 ```javascript
-var wizard = new Wizard([
+const wizard = Wizard.create([
     {
         prompt: 'Username:',
         required: true
@@ -97,7 +97,7 @@ wizard.execute().then(console.log);
 Password confirmation can be requested by passing `confirm: true`, or a message to be displayed for the confirmation prompt. This will ask for password input a second time, and check that the two values match.
 
 ```javascript
-var wizard = new Wizard([
+const wizard = Wizard.create([
     {
         prompt: 'Username:',
         required: true
@@ -118,7 +118,7 @@ wizard.execute().then(console.log);
 The default value for an input can be passed with the `default` parameter. If this is se to a function then it is called with the previous fields' input values.
 
 ```javascript
-var wizard = new Wizard([
+const wizard = Wizard.create([
     {
         prompt: 'Name:',
         key: 'name',

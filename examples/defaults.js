@@ -1,6 +1,6 @@
 const Wizard = require('../');
 
-var wizard = new Wizard([
+const wizard = Wizard.create([
     {
         prompt: 'Name:',
         key: 'name',

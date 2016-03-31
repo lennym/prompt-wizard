@@ -70,4 +70,8 @@ function ValidationError(message) {
 }
 require('util').inherits(ValidationError, Error);
 
+Wizard.create = function (steps) {
+    return new Wizard(steps);
+}
+
 module.exports = Wizard;
