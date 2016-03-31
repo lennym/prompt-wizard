@@ -1,6 +1,6 @@
 {
   "name": "prompt-wizard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool for multi-step user prompts",
   "main": "index.js",
   "scripts": {
