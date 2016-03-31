@@ -18,7 +18,7 @@ Wizard.prototype.execute = function () {
     return this.steps.reduce((promise, step) => {
         return promise
             .then(() => executeStep(step, inputs))
-            .then(input => inputs[step.key] = input);
+            .then(input => inputs[step.key || step.prompt] = input);
     }, Promise.resolve()).then(() => inputs);
 };
 
