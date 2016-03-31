@@ -113,6 +113,28 @@ var wizard = new Wizard([
 wizard.execute().then(console.log);
 ```
 
+### Default Values:
+
+The default value for an input can be passed with the `default` parameter. If this is se to a function then it is called with the previous fields' input values.
+
+```javascript
+var wizard = new Wizard([
+    {
+        prompt: 'Name:',
+        key: 'name',
+        required: true
+    },
+    {
+        prompt: 'Username:',
+        key: 'username',
+        required: true,
+        default: (i) => i.name.toLowerCase().replace(' ', '.')
+    }
+]);
+
+wizard.execute().then(console.log);
+```
+
 ### Other Options
 
 This module uses [read](https://www.npmjs.com/package/read) under the hood, so any options that can be passed to read can also be configured on wizard steps.
