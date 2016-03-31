@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/lennym/cli-wizard/issues"
   },
-  "homepage": "https://github.com/lennym/cli-wizard#readme"
+  "homepage": "https://github.com/lennym/cli-wizard#readme",
+  "dependencies": {
+    "bluebird": "^3.3.4",
+    "colors": "^1.1.2",
+    "read": "^1.0.7"
+  }
 }
