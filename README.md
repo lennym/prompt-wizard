@@ -4,7 +4,7 @@ CLI tool for multi-step user input
 
 ## Examples:
 
-[./examples](Examples)
+[Examples](./examples)
 
 In its simplest form, a wizard will ask a series of questions before resolving a promise with the consolidated answers:
 
