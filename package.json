@@ -1,5 +1,5 @@
 {
-  "name": "cli-wizard",
+  "name": "prompt-wizard",
   "version": "1.0.0",
   "description": "CLI tool for multi-step user prompts",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lennym/cli-wizard.git"
+    "url": "git+https://github.com/lennym/prompt-wizard.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lennym/cli-wizard/issues"
+    "url": "https://github.com/lennym/prompt-wizard/issues"
   },
-  "homepage": "https://github.com/lennym/cli-wizard#readme",
+  "homepage": "https://github.com/lennym/prompt-wizard#readme",
   "dependencies": {
     "bluebird": "^3.3.4",
     "colors": "^1.1.2",
