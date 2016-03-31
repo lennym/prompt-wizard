@@ -3,13 +3,15 @@ const Wizard = require('../');
 const wizard = Wizard.create([
     {
         prompt: 'Username:',
+        key: 'username',
         required: true
     },
     {
         prompt: 'Password:',
+        key: 'password',
         required: true,
-        silent: true,
-        confirm: 'Confirm password:'
+        password: true,
+        confirm: 'Re-enter password:'
     }
 ]);
 

@@ -29,6 +29,14 @@ function executeStep(step, inputs) {
         }
     });
 
+    if (step.password) {
+        step.silent = true;
+        if (typeof step.replace === 'undefined') {
+            step.replace = '*';
+        }
+        step.confirm = step.confirm || 'Confirm Password:';
+    }
+
     return read(step)
         .then(input => {
             var result;
@@ -45,7 +53,8 @@ function executeStep(step, inputs) {
             if (step.confirm) {
                 return read({
                     prompt: typeof step.confirm === 'string' ? step.confirm : 'Confirm:',
-                    silent: step.silent
+                    silent: step.silent,
+                    replace: step.replace
                 })
                 .then(confirmation => {
                     if (confirmation !== input) { throw new ValidationError('inputs do not match'); }

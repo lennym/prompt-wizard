@@ -76,7 +76,7 @@ wizard.execute().then(console.log);
 
 ### Password Input:
 
-Password input can be hidden from view by passing a `silent: true` options for the field.
+Password input can be hidden from view by passing a `password: true` option for the field. This will also prompt the user to re-enter their password. If the second input does not match the first then the user will be prompted again.
 
 ```javascript
 const wizard = Wizard.create([
@@ -87,31 +87,16 @@ const wizard = Wizard.create([
     {
         prompt: 'Password:',
         required: true,
-        silent: true
+        password: true
     }
 ]);
 
 wizard.execute().then(console.log);
 ```
 
-Password confirmation can be requested by passing `confirm: true`, or a message to be displayed for the confirmation prompt. This will ask for password input a second time, and check that the two values match.
+By default, this will replace input characters with `'*'`. This can be configured, or disabled, by setting a `replace` option.
 
-```javascript
-const wizard = Wizard.create([
-    {
-        prompt: 'Username:',
-        required: true
-    },
-    {
-        prompt: 'Password:',
-        required: true,
-        silent: true,
-        confirm: 'Confirm password:'
-    }
-]);
-
-wizard.execute().then(console.log);
-```
+The confirmation prompt can be set by passing the desired message as a `confirm` option.
 
 ### Default Values:
 
