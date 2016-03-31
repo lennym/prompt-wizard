@@ -5,7 +5,6 @@ const Promise = require('bluebird');
 const read = Promise.promisify(require('read'));
 
 const templatable = [
-    'prompt',
     'default'
 ];
 
