@@ -14,11 +14,18 @@ function Wizard(steps) {
 
 Wizard.prototype.execute = function () {
     const inputs = {};
-    return this.steps.reduce((promise, step) => {
-        return promise
+    return this.steps.reduce((p, step) => {
+        return p
             .then(() => executeStep(step, inputs))
             .then(input => inputs[step.key || step.prompt] = input);
-    }, Promise.resolve()).then(() => inputs);
+    }, Promise.resolve()).then(() => inputs)
+    .catch(e => {
+        if (e.message === 'canceled') {
+            console.log('\nBye...');
+            throw new Promise.CancellationError('prompt-wizard was cancelled by user');
+        }
+        throw e;
+    });
 };
 
 function executeStep(step, inputs) {
